@@ -39,36 +39,24 @@ public class MedicoController {
 	public List<DadosListagemMedico> listar() {
 		return repository.findAll().stream().map(DadosListagemMedico::new).toList();
 	}
-	
-//	@GetMapping
-//	public Page<DadosListagemMedico> listarPaginado(Pageable paginacao) {
-//		return repository.findAll(paginacao).map(DadosListagemMedico::new);
-//	}
-	
+
 	@GetMapping
 	public Page<DadosListagemMedico> listarPaginado(Pageable paginacao) {
 		return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
 	}
-	
-    @PutMapping
-    @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
-    	var medico = repository.getReferenceById(dados.id());
-    	medico.atualizarInformacoes(dados);
-    }
-    
-//    //Exclusão total
-//    @DeleteMapping("/{id}")//Parametro por URL...
-//    @Transactional
-//    public void excluirTotal(@PathVariable Long id) {
-//    	repository.deleteById(id);
-//    }
-	
-    @DeleteMapping("/{id}")//Parametro por URL...
-    @Transactional
-    public void excluir(@PathVariable Long id) {
-    	var medico = repository.getReferenceById(id);
-    	medico.excluir();
-    }
+
+	@PutMapping
+	@Transactional
+	public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+		var medico = repository.getReferenceById(dados.id());
+		medico.atualizarInformacoes(dados);
+	}
+
+	@DeleteMapping("/{id}")
+	@Transactional
+	public void excluir(@PathVariable Long id) {
+		var medico = repository.getReferenceById(id);
+		medico.excluir();
+	}
 
 }

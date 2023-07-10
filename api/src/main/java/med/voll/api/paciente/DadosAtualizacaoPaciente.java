@@ -1,4 +1,4 @@
-package med.voll.api.controller;
+package med.voll.api.paciente;
 
 import jakarta.validation.constraints.NotNull;
 import med.voll.api.endereco.DadosEndereco;
