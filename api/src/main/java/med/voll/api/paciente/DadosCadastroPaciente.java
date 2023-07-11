@@ -5,6 +5,8 @@ import med.voll.api.endereco.DadosEndereco;
 
 public record DadosCadastroPaciente(
 		
+		Long id,
+		
 		@NotBlank
         String nome,
         
@@ -20,7 +22,7 @@ public record DadosCadastroPaciente(
         DadosEndereco endereco) {
 
 	public DadosCadastroPaciente(Paciente paciente) {
-		this(paciente.getNome(), paciente.getEmail(), paciente.getTelefone(), paciente.getCpf(), new DadosEndereco(paciente.getEndereco()));
+		this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getTelefone(), paciente.getCpf(), new DadosEndereco(paciente.getEndereco()));
 	}
 	
 }
