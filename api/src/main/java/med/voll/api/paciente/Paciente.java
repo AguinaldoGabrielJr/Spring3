@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import med.voll.api.endereco.Endereco;
 @EqualsAndHashCode(of = "id")
 public class Paciente {
 
-	public Paciente(DadosCadastroPaciente dados) {
+	public Paciente(@Valid DadosCadastroPaciente dados) {
 		this.ativo = true;
 		this.nome = dados.nome();
 		this.email = dados.email();

@@ -18,5 +18,9 @@ public record DadosCadastroPaciente(
         String cpf,
         
         DadosEndereco endereco) {
+
+	public DadosCadastroPaciente(Paciente paciente) {
+		this(paciente.getNome(), paciente.getEmail(), paciente.getTelefone(), paciente.getCpf(), new DadosEndereco(paciente.getEndereco()));
+	}
 	
 }
