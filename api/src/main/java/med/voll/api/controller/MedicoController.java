@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
@@ -24,7 +23,6 @@ import jakarta.validation.Valid;
 import med.voll.api.medico.DadosAtualizacaoMedico;
 import med.voll.api.medico.DadosCadastroMedico;
 import med.voll.api.medico.DadosDetalhamentoMedico;
-import med.voll.api.medico.DadosListagemMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
 
@@ -53,14 +51,14 @@ public class MedicoController {
 	}
 
 	@GetMapping("/lista")
-	public List<DadosListagemMedico> listar() {
-		return repository.findAll().stream().map(DadosListagemMedico::new).toList();
+	public List<DadosDetalhamentoMedico> listar() {
+		return repository.findAll().stream().map(DadosDetalhamentoMedico::new).toList();
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<DadosListagemMedico>> listarPaginado(
+	public ResponseEntity<Page<DadosDetalhamentoMedico>> listarPaginado(
 			@PageableDefault(size = 10, sort = { "nome" }) Pageable paginacao) {
-		Page<DadosListagemMedico> page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+		Page<DadosDetalhamentoMedico> page = repository.findAllByAtivoTrue(paginacao).map(DadosDetalhamentoMedico::new);
 		return ResponseEntity.ok(page);
 	}
 
