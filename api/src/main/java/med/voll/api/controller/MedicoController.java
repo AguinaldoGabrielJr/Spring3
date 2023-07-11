@@ -44,6 +44,13 @@ public class MedicoController {
 		URI uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
 		return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<DadosDetalhamentoMedico> detalhar(@PathVariable Long id) {
+		var medico = repository.getReferenceById(id);
+
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+	}
 
 	@GetMapping("/lista")
 	public List<DadosListagemMedico> listar() {
