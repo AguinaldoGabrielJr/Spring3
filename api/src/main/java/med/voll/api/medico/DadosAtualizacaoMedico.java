@@ -12,4 +12,9 @@ public record DadosAtualizacaoMedico(
 		String email,
 		DadosEndereco endereco ) {
 
+	public DadosAtualizacaoMedico(Medico medico) {
+		this(medico.getId(), medico.getNome(), medico.getTelefone(), medico.getEmail(),
+				new DadosEndereco(medico.getEndereco()));
+	}
+
 }

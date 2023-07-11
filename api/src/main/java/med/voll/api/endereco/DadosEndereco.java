@@ -2,6 +2,7 @@ package med.voll.api.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import med.voll.api.medico.Medico;
 
 public record DadosEndereco(
 		
@@ -24,4 +25,10 @@ public record DadosEndereco(
 		String complemento, 
 		
 		String numero) {
+	
+	public DadosEndereco(Endereco endereco) {
+		this(endereco.getLogradouro(), endereco.getBairro(), endereco.getCep(), endereco.getCidade(), endereco.getUf(),
+				endereco.getComplemento(), endereco.getNumero());
+	}
+
 }
