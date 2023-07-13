@@ -20,11 +20,14 @@ public class AutenticacaoController {
 	@Autowired
 	private AuthenticationManager manager;
 	
-	@SuppressWarnings("rawtypes")
-	@PostMapping
-	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
-		var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-		Authentication authentication = manager.authenticate(token);
-		return ResponseEntity.ok().build();
+
+	 @PostMapping
+	    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+	        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+	        var authentication = manager.authenticate(token);
+
+	        return ResponseEntity.ok().build();
+	    }
+
 	}
-}
+
