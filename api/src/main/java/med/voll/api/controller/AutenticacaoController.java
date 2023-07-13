@@ -19,15 +19,16 @@ public class AutenticacaoController {
 
 	@Autowired
 	private AuthenticationManager manager;
-	
 
-	 @PostMapping
-	    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
-	        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-	        var authentication = manager.authenticate(token);
-
-	        return ResponseEntity.ok().build();
-	    }
-
+	@PostMapping
+	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+		try {
+			var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+			var authentication = manager.authenticate(token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok().build();
 	}
 
+}
